@@ -295,7 +295,8 @@ export default {
     }
   }
   .acceptButton {
-    padding: 14px 20px;
+    width: 30%;
+    padding: 14px 1px;
     color: #fff;
     display: flex;
     align-items: center;

@@ -127,6 +127,8 @@ export default {
     align-items: start;
     padding: 10px 5px;
     font-size: 14px;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2); 
 
     & > span {
       pointer-events: none;

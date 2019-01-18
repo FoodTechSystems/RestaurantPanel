@@ -12,7 +12,6 @@
       
       <div class="main_panel_body">
         <CurrentOrder :currentOrder="currentOrder" v-show="currentOrder.id"/> 
-        <!-- <div class="loading_wrapper" v-if="!currentOrder.id"><div class="loading"></div></div>-->
       </div>
     
     </div>
@@ -80,38 +79,8 @@ export default {
 
       &_body {
         flex: 3 0px;
-        position:relative;
+        // position:relative;
       }
     }
-  }
-  .loading {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(255,255,255,.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
-    -webkit-animation: spin 1s ease-in-out infinite;
-  }
-  .loading_wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: #000000d1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-  }
-
-  @keyframes spin {
-    to { -webkit-transform: rotate(360deg); }
-  }
-  @-webkit-keyframes spin {
-    to { -webkit-transform: rotate(360deg); }
   }
 </style>

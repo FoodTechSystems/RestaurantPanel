@@ -97,7 +97,7 @@ export default {
       bottom: 0;
       width: 100%;
       height: 100%;
-      background: #000000d1;
+      background: #00000085;
       display: flex;
       justify-content: center;
       align-items: center;
