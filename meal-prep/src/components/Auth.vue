@@ -25,8 +25,8 @@ export default {
   data () {
     return {
       isError: false,
-      login: "SkachkoDK",
-      password: "87530952",
+      login: "",
+      password: "",
     }
   },
   methods: {

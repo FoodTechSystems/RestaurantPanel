@@ -45,7 +45,7 @@ export default {
       orderId: this.currentOrder.id,
       minutes: 15,
       arrivalTime: moment(this.currentOrder.restaurant_arrival_time).format('LT'),
-      arrivalTimeWithDelivery: moment(this.currentOrder.restaurant_arrival_time).add(this.minutes,'m').format('LT'),
+      arrivalTimeWithDelivery: moment(Date.now()).add(this.minutes,'m').format('LT'),
     }
   },
   props: {
@@ -54,7 +54,7 @@ export default {
   },
   watch: {
     minutes: function(val){
-      this.arrivalTimeWithDelivery = moment(this.currentOrder.restaurant_arrival_time).add(this.minutes,'m').format('LT');
+      this.arrivalTimeWithDelivery = moment(Date.now()).add(this.minutes,'m').format('LT');
     }
   },
   mounted(){
@@ -70,10 +70,11 @@ export default {
     sendOrder: function(e) {
       e.preventDefault();
       const body = JSON.stringify({ minutes:this.minutes })
-      const currentOrder = this.currentOrder.id;
-      HTTP.post(`/system/restaurant/order/${currentOrder}/readylTime`, body)
+      const currentOrderId = this.currentOrder.id;
+      HTTP.post(`/system/restaurant/order/${currentOrderId}/readylTime`, body)
       .then(res => {
         this.$store.dispatch("loadData");
+        this.$store.dispatch("getCurrentOrder", currentOrderId);
         this.$emit('close');
       })
       .catch(e => {

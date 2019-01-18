@@ -13,7 +13,7 @@
           Ожидается доставка до {{arrivalTime}}
         </div>
         <div class="current_order_panel_header_time" v-if="currentOrder.order_status > 0">
-          Доставка до {{arrivalTime}}
+          Курьер прибудет к {{arrivalTime}}
         </div>
       </div>
 
@@ -41,7 +41,7 @@
               <span>{{dish.quantity}} x {{dish.name}} </span> <span>{{dish.price}} BYN</span>
             </div> 
             <div class="current_order_info_list_dish_secondary" :key="option.id" v-for="option in dish.options">
-              <span>{{option.count}} x {{option.name}} </span>
+              <span class="line"> <span>{{option.count}} x {{option.name}} </span> <span>{{option.price}} BYN</span> </span>
             </div>
 
           </div>
@@ -97,7 +97,7 @@ export default {
   },
   data () {
     return {
-      arrivalTime: moment(this.currentOrder.restaurant_arrival_time).format('LT'),
+      arrivalTime: moment(this.currentOrder.registration_time).format('LT'),
       openPopup: false,
     }
   },
@@ -110,10 +110,11 @@ export default {
     },
     readyToDelivery: function(e) {
       const body = JSON.stringify({ minutes: this.minutes });
-
-      HTTP.post(`/system/restaurant/order/${this.currentOrder.id}/readyToDelivery`, body)
+      const currentOrderId = this.currentOrder.id;
+      HTTP.post(`/system/restaurant/order/${currentOrderId}/readyToDelivery`, body)
       .then(res => {
         this.$store.dispatch("loadData");
+        this.$store.dispatch("getCurrentOrder", currentOrderId);
       })
       .catch(e => {
         console.log(e);
@@ -126,6 +127,7 @@ export default {
       HTTP.post(`/system/restaurant/order/${this.currentOrder.id}/handed`, body)
       .then(res => {
         this.$store.dispatch("loadData");
+        this.$store.dispatch("updateCurrentOrder", {});        
       })
       .catch(e => {
         console.log(e);
@@ -235,6 +237,11 @@ export default {
             color: #808080;
             margin-top: 8px;   
             margin-left: 28px;
+
+            .line {
+              display: flex;
+              justify-content: space-between;
+            }
           }
 
         }
