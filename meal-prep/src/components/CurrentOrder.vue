@@ -127,7 +127,7 @@ export default {
       HTTP.post(`/system/restaurant/order/${this.currentOrder.id}/handed`, body)
       .then(res => {
         this.$store.dispatch("loadData");
-        this.$store.dispatch("updateCurrentOrder", {});        
+        this.$store.commit('updateCurrentOrder', {});    
       })
       .catch(e => {
         console.log(e);

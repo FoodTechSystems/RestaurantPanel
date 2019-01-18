@@ -61,7 +61,7 @@ export default {
         // justify-content: space-between;
         align-items: center;
         height: 65px;
-        padding: 0 15px;
+        padding: 0 15px 0 5px;
         border: 1px solid rgba(128, 128, 128, 0.2);
 
         & > div:first-child {
