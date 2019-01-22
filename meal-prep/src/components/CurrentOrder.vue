@@ -9,11 +9,11 @@
           <span v-if="currentOrder.order_status === 3" class="ready">Готов к выдаче</span>
         </div>
 
-        <div class="current_order_panel_header_time" v-if="currentOrder.order_status === 0">
+        <!-- <div class="current_order_panel_header_time" v-if="currentOrder.order_status === 1 || currentOrder.order_status === 2">
           Ожидается доставка до {{arrivalTime}}
-        </div>
+        </div> -->
         <div class="current_order_panel_header_time" v-if="currentOrder.order_status > 0">
-          Курьер прибудет к {{arrivalTime}}
+          Курьер прибудет к {{convertTime(currentOrder.restaurant_arrival_time)}}
         </div>
       </div>
 
@@ -97,14 +97,13 @@ export default {
   },
   data () {
     return {
-      arrivalTime: moment(this.currentOrder.registration_time).format('LT'),
       openPopup: false,
     }
   },
-  mounted () {
-
-  },
   methods: {
+    convertTime(time) {
+      return moment(time).format('LT')
+    },
     handlePopup: function(e) {
       this.openPopup = true
     },

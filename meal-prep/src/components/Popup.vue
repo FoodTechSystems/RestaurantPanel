@@ -44,8 +44,7 @@ export default {
     return {
       orderId: this.currentOrder.id,
       minutes: 15,
-      arrivalTime: moment(this.currentOrder.restaurant_arrival_time).format('LT'),
-      arrivalTimeWithDelivery: moment(Date.now()).add(this.minutes,'m').format('LT'),
+      arrivalTimeWithDelivery: moment(Date.now()).add(15,'m').format('LT'),
     }
   },
   props: {
@@ -56,9 +55,6 @@ export default {
     minutes: function(val){
       this.arrivalTimeWithDelivery = moment(Date.now()).add(this.minutes,'m').format('LT');
     }
-  },
-  mounted(){
-    
   },
   methods: {
     add: function(e) {
@@ -73,6 +69,7 @@ export default {
       const currentOrderId = this.currentOrder.id;
       HTTP.post(`/system/restaurant/order/${currentOrderId}/readylTime`, body)
       .then(res => {
+        this.minutes = 15;
         this.$store.dispatch("loadData");
         this.$store.dispatch("getCurrentOrder", currentOrderId);
         this.$emit('close');

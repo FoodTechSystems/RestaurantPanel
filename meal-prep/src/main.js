@@ -16,6 +16,8 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+setInterval(() => {store.dispatch("loadData")}, 60000)
+
 moment.lang('ru');
 
 Vue.use(VueAxios, axios)
