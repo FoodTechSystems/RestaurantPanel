@@ -8,8 +8,8 @@
         <div class="orders_type_list">
           <div :key="order.id" v-for="order in newOrders">
             <div class="order_info" @click="getCurrentOrder(order.id)" :class="{active: isActive(order.id)}">
-              <span class="order_info_name">{{order.courier_name}} <span class="order_info_name_num">(№ {{order.id}})</span></span>
-              <span class="order_info_time"><span>Ожидается доставка до {{convertTime(order.restaurant_arrival_time)}}</span> <span>{{convertTime(order.registration_time)}}</span></span>
+              <span class="order_info_name">№ {{order.id}} <span class="order_info_name_num">({{order.courier_name}})</span></span>
+              <span class="order_info_time"><span></span> <span>{{convertTime(order.registration_time)}}</span></span>
               <span class="order_info_cost">{{order.order_cost}} BYN</span>
             </div>
           </div>
@@ -26,9 +26,9 @@
         <div class="orders_type_list">
           <div :key="order.id" v-for="order in acceptedOrders" :class="{active: isActive(order.id)}">
             <div class="order_info" @click="getCurrentOrder(order.id)">
-              <span class="order_info_name">{{order.courier_name}} <span class="order_info_name_num">(№ {{order.id}})</span></span>
-              <span class="order_info_time"><span>Доставка до {{convertTime(order.restaurant_arrival_time)}}</span> <span>{{convertTime(order.registration_time)}}</span></span>
-              <span class="order_info_cost">{{order.order_cost}} BYN</span>
+                <span class="order_info_name">№ {{order.id}} <span class="order_info_name_num">({{order.courier_name}})</span></span>
+                <span class="order_info_time"><span>Курьер прибудет к {{convertTime(order.restaurant_arrival_time)}}</span> <span>{{convertTime(order.registration_time)}}</span></span>
+                <span class="order_info_cost">{{order.order_cost}} BYN</span>
             </div>
           </div>
           <div class="order_info_empty" v-if="!acceptedOrders[0]">
@@ -44,9 +44,9 @@
         <div class="orders_type_list">
           <div :key="order.id" v-for="order in readyOrders">
             <div class="order_info" @click="getCurrentOrder(order.id)" :class="{active: isActive(order.id)}">
-              <span class="order_info_name">{{order.courier_name}} <span class="order_info_name_num">(№ {{order.id}})</span></span>
-              <span class="order_info_time"><span>Доставка до {{convertTime(order.restaurant_arrival_time)}}</span> <span>{{convertTime(order.registration_time)}}</span></span>
-              <span class="order_info_cost">{{order.order_cost}} BYN</span>
+                <span class="order_info_name">№ {{order.id}} <span class="order_info_name_num">({{order.courier_name}})</span></span>
+                <span class="order_info_time"><span>Курьер прибудет к {{convertTime(order.restaurant_arrival_time)}}</span> <span>{{convertTime(order.registration_time)}}</span></span>
+                <span class="order_info_cost">{{order.order_cost}} BYN</span>
             </div>
           </div>
           <div class="order_info_empty" v-if="!readyOrders[0]">
