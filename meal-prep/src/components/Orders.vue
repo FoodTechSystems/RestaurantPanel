@@ -91,8 +91,8 @@ export default {
     },
     convertTime(time){
         var offset = new Date().getTimezoneOffset();
-        console.log(offset);
-      return moment(time).add(-1 * new Date().getTimezoneOffset(),'m').format('LT')
+        return offset;
+      //return moment(time).add(-1 * new Date().getTimezoneOffset(),'m').format('LT')
     }
   }
 };
