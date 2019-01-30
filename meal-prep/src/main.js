@@ -1,3 +1,4 @@
+'use strict';
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -14,13 +15,13 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
-})
+});
 
-setInterval(() => {store.dispatch("loadData")}, 60000)
+setInterval(() => {store.dispatch("loadData")}, 10000);
 
 moment.lang('ru');
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 
 new Vue({
   router,
