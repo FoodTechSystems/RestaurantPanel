@@ -90,9 +90,7 @@ export default {
       this.$store.dispatch("getCurrentOrder", id);
     },
     convertTime(time){
-        var offset = new Date().getTimezoneOffset();
-        return offset;
-      //return moment(time).add(-1 * new Date().getTimezoneOffset(),'m').format('LT')
+      return moment(time).format('LT')
     }
   }
 };
