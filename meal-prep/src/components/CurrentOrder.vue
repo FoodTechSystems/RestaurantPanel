@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     convertTime(time) {
-      return moment(time).add(-new Date().getTimezoneOffset(),'m').format('LT');
+      return moment(time).format('LT');
     },
     handlePopup: function(e) {
       this.openPopup = true
