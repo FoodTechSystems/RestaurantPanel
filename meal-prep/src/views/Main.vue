@@ -15,6 +15,7 @@
       </div>
     
     </div>
+    <Notification/>
   </div>
 
 </template>
@@ -23,6 +24,7 @@
 <script>
 import Orders from "@/components/Orders.vue";
 import CurrentOrder from "@/components/CurrentOrder.vue";
+import Notification from "@/components/Notification.vue";
 import { HTTP } from '@/request/http-common'
 import { exit } from '@/request/exit';
 import { deleteCookie } from '@/request/cookie';
@@ -34,6 +36,7 @@ export default {
   components: {
     Orders,
     CurrentOrder,
+    Notification,
   },
   computed: {
     ...mapState(['orders', 'currentOrder']),

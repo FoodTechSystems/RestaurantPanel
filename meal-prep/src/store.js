@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     orders:[],
     currentOrder:{},
+    newOrders: false,
   },
 
   getters: {
@@ -17,12 +18,18 @@ export default new Vuex.Store({
     },
     getCurrentOrder(state) {
       return state.currentOrder
+    },
+    getOrdersState(state) {
+      return state.newOrders
     }
   },
 
   mutations: {
     updateOrders(state, orders) {
       state.orders = orders
+    },
+    updateOrdersState(state, props) {
+      state.newOrders = props;
     },
     updateCurrentOrder(state, currentOrder) {
       state.currentOrder = currentOrder
@@ -33,7 +40,14 @@ export default new Vuex.Store({
     loadData({commit}){
       HTTP.get('/system/restaurant/orders')
       .then(res => {
-        commit('updateOrders', res.data)
+        const newOrdersCount = res.data.filter((a)=> a.order_status === 0).length;
+        const currentOrdesCount = this.state.orders.filter((a)=> a.order_status === 0).length;
+        
+        commit('updateOrders', res.data);
+
+        if (newOrdersCount > 0 && newOrdersCount > currentOrdesCount) {
+          commit('updateOrdersState', true)
+        }
       })
       .catch(e => {
         console.log(e);
