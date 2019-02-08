@@ -5,8 +5,8 @@
       <div class="current_order_panel_header_first">
         <div class="current_order_panel_header_type">
           <span v-if="currentOrder.order_status === 0" class="new">Новый</span>
-          <span v-if="currentOrder.order_status === 1 || currentOrder.order_status === 2" class="checked">Принят</span>
-          <span v-if="currentOrder.order_status === 3" class="ready">Готов к выдаче</span>
+          <span v-if="currentOrder.order_status === 1" class="checked">Принят</span>
+          <span v-if="currentOrder.order_status === 2" class="ready">Готов к выдаче</span>
         </div>
 
         <!-- <div class="current_order_panel_header_time" v-if="currentOrder.order_status === 1 || currentOrder.order_status === 2">
@@ -20,10 +20,10 @@
       <div class="acceptButton new" @click="handlePopup" v-if="currentOrder.order_status === 0">
         Принять заказ
       </div>
-      <div class="acceptButton checked" @click="readyToDelivery" v-if="currentOrder.order_status === 1 || currentOrder.order_status === 2">
+      <div class="acceptButton checked" @click="readyToDelivery" v-if="currentOrder.order_status === 1">
         Готов к выдаче
       </div>
-      <div class="acceptButton ready" @click="giveToDelivery" v-if="currentOrder.order_status === 3">
+      <div class="acceptButton ready" @click="giveToDelivery" v-if="currentOrder.order_status === 2">
         Передать курьеру
       </div>
       

@@ -79,8 +79,8 @@ export default {
   },
   mounted () {
     this.newOrders = this.orders.filter((a)=> a.order_status === 0)
-    this.acceptedOrders = this.orders.filter((a)=> a.order_status === 1 || a.order_status === 2)
-    this.readyOrders = this.orders.filter((a)=> a.order_status === 3)
+    this.acceptedOrders = this.orders.filter((a)=> a.order_status === 1)
+    this.readyOrders = this.orders.filter((a)=> a.order_status === 2)
   },
   methods: {
     isActive(target) {
