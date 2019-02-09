@@ -43,7 +43,9 @@ export default {
   },
   mounted() {
     const currentToken = getCookie('Authorization');
-    setCookie('Authorization', currentToken, 'expires=86400');  
+    if (currentToken) {
+      setCookie('Authorization', currentToken, 'expires=86400');  
+    }
   },
   created() {
     this.$store.dispatch("loadData");
