@@ -27,7 +27,7 @@ import CurrentOrder from "@/components/CurrentOrder.vue";
 import Notification from "@/components/Notification.vue";
 import { HTTP } from '@/request/http-common'
 import { exit } from '@/request/exit';
-import { deleteCookie } from '@/request/cookie';
+import { deleteCookie, getCookie, setCookie } from '@/request/cookie';
 import { mapState, mapGetters } from 'vuex';
 
 
@@ -40,6 +40,10 @@ export default {
   },
   computed: {
     ...mapState(['orders', 'currentOrder']),
+  },
+  mounted() {
+    const currentToken = getCookie('Authorization');
+    setCookie('Authorization', currentToken, 'expires=86400');  
   },
   created() {
     this.$store.dispatch("loadData");
