@@ -45,7 +45,9 @@ export default {
     const currentToken = getCookie('Authorization');
     if (currentToken) {
       setCookie('Authorization', currentToken, 'expires=86400');  
+      setInterval(() => { this.$store.dispatch("loadData") }, 10000);
     }
+
   },
   created() {
     this.$store.dispatch("loadData");

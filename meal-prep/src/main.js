@@ -17,7 +17,6 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-setInterval(() => {store.dispatch("loadData")}, 10000);
 
 moment.lang('ru');
 
