@@ -2,6 +2,9 @@
   <div class="notification_wrapper" v-if="isOpen" @click="close">
     <div class="form">
       <h2>Новый заказ(ы)</h2>
+      <audio ref="audio" loop preload="none" class="audio">
+        <source src="../../assets/loshad.mp3" type="audio/mpeg">
+      </audio>
     </div>
 
   </div>
@@ -14,6 +17,27 @@ export default {
   computed: {
     isOpen() {
       return this.$store.getters.getOrdersState
+    }
+  },
+  mounted(){
+    if (this.isOpen) {
+      var playPromise = this.$refs.audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(_ => {
+
+        })
+        .catch(error => {
+          console.log(error)
+        });
+      }
+    }
+  },
+  watch: {
+    isOpen: function(val) {
+      if (!val) {
+        this.$refs.audio.pause();
+        this.$refs.audio.currentTime = 0;
+      }
     }
   },
   methods: {
@@ -54,6 +78,9 @@ export default {
     border-radius: 3px;
     position: relative;
     color: #fff;
+  }
+  .audio {
+    display:none;
   }
 
 </style>

@@ -10,8 +10,11 @@ import moment from 'moment'
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
+  const auth = router.options.routes[1].meta.authorized
   if(to.meta.authorized === false) {
     next(from)
+  } else if (to.path === "/" && auth === true) {
+    next("/main")
   } else {
     next()
   }
