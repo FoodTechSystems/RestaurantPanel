@@ -1,14 +1,14 @@
 <template>
   <div class="orders_panel">
     <div>
-      
+
       <div class="orders_type" >
         <div class="orders_type_header">Новый <span>{{ newOrders.length }}</span></div>
-        
+
         <div class="orders_type_list">
           <div :key="order.id" v-for="order in newOrders">
             <div class="order_info" @click="getCurrentOrder(order.id)" :class="{active: isActive(order.id)}">
-              <span class="order_info_name">№ {{order.id}} <span class="order_info_name_num">({{order.courier_name}})</span></span>
+              <span class="order_info_name">№ {{order.id}} <span class="order_info_name_num" v-if="order.courier_name !== null">({{order.courier_name}})</span></span>
               <span class="order_info_time"><span>Ожидает подтверждения</span> <span>{{convertTime(order.registration_time)}}</span></span>
               <span class="order_info_cost">{{order.order_cost}} BYN</span>
             </div>
@@ -19,10 +19,10 @@
         </div>
 
       </div>
-      
+
       <div class="orders_type">
         <div class="orders_type_header">Принят <span>{{ acceptedOrders.length }}</span></div>
-        
+
         <div class="orders_type_list">
           <div :key="order.id" v-for="order in acceptedOrders" :class="{active: isActive(order.id)}">
             <div class="order_info" @click="getCurrentOrder(order.id)">
@@ -40,7 +40,7 @@
 
       <div class="orders_type">
         <div class="orders_type_header">Готов к выдаче <span>{{ readyOrders.length }}</span></div>
-        
+
         <div class="orders_type_list">
           <div :key="order.id" v-for="order in readyOrders">
             <div class="order_info" @click="getCurrentOrder(order.id)" :class="{active: isActive(order.id)}">
@@ -57,7 +57,7 @@
       </div>
 
     </div>
-    
+
 
   </div>
 </template>
@@ -127,16 +127,16 @@ export default {
     align-items: start;
     padding: 10px 5px;
     font-size: 14px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.2); 
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 
     & > span {
       pointer-events: none;
     }
-    
+
     &:hover {
       background: #D6D8D9;
     }
-    
+
     &_name {
       font-weight: 600;
       font-size: 20px;

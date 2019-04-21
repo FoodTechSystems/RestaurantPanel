@@ -5,7 +5,7 @@
       <form name="popup" @submit="sendOrder">
         <span class="close_button" @click="$emit('close')">×</span>
         <h2>Принять заказ</h2>
-        
+
         <div class="calculator">
           <div class="calculator_block">
             <div class="calculator_sign" @click="sub">
@@ -30,7 +30,6 @@
         <input type="submit" value="Подтвердить">
       </form>
     </div>
-
   </div>
 </template>
 
@@ -43,8 +42,8 @@ export default {
   data () {
     return {
       orderId: this.currentOrder.id,
-      minutes: 15,
-      arrivalTimeWithDelivery: moment(Date.now()).add(15,'m').format('LT'),
+      minutes: 25,
+      arrivalTimeWithDelivery: moment(Date.now()).add(25,'m').format('LT'),
     }
   },
   props: {
@@ -61,7 +60,7 @@ export default {
       this.minutes += 5
     },
     sub: function(e) {
-      this.minutes > 5 ? this.minutes -= 5 : false
+      this.minutes > 20 ? this.minutes -= 5 : false
     },
     sendOrder: function(e) {
       e.preventDefault();
@@ -69,31 +68,46 @@ export default {
       const currentOrderId = this.currentOrder.id;
       HTTP.post(`/system/restaurant/order/${currentOrderId}/readylTime`, body)
       .then(res => {
-        this.minutes = 15;
+        this.minutes = 20;
         this.$store.dispatch("loadData");
         this.$store.dispatch("getCurrentOrder", currentOrderId);
         this.$emit('close');
       })
       .catch(e => {
-        this.$router.push("/");
+          console.log(e);
+        // this.$router.push("/");
       })
 
     }
   },
-  
+
 };
 </script>
 
 <style scoped lang="less">
   .popup {
+    @media screen and (max-width: 880px) {
+      &_wrapper {
+        margin-left: -220px;
+        margin-top: -65px;
+      }
+    }
+    @media screen and (min-width: 880px) {
+      &_wrapper {
+        margin-left: -25vw;
+        margin-top: -65px;
+      }
+    }
     &_wrapper {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
+      margin-left: -25vw;
+      margin-top: -65px;
       background: #00000085;
       display: flex;
       justify-content: center;

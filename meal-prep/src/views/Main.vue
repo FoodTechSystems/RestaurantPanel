@@ -61,6 +61,7 @@ export default {
     &_panel {
       display:flex;
       flex-flow: row wrap;
+      min-width: 880px;
 
       & > * {
         flex: 1 100%;
@@ -69,6 +70,8 @@ export default {
       &_header {
         background: #E5E7E8;
         display: flex;
+        position: fixed;
+        width: 100%;
         // justify-content: space-between;
         align-items: center;
         height: 65px;
@@ -83,13 +86,23 @@ export default {
       &_aside {
         background: #eaeaea;
         flex: 1;
-        height: calc(100vh - 65px);
+        height: -webkit-calc(100% - 65px);
+        height: -moz-calc(100% - 65px);
+        height: calc(100% - 65px);
         overflow: auto;
+        position: fixed;
+        top: 65px;
         min-width: 220px;
+        width:25%;
       }
 
       &_body {
-        flex: 3 0px;
+        //flex: 3 0px;
+        position: fixed;
+        top: 65px;
+        right: 0;
+        min-width: 660px;
+        width:75%;
         // position:relative;
       }
     }

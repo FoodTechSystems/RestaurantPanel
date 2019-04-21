@@ -6,7 +6,7 @@ export const AUTH = axios.create({
   headers: {
     'Content-Type': 'application/json',
   }
-})
+});
 
 export const HTTP = axios.create({
   baseURL: "http://restaurant.eda-foodtech.by",
@@ -15,4 +15,4 @@ export const HTTP = axios.create({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${getCookie('Authorization')}`
   },
-})
+});

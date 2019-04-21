@@ -2,9 +2,6 @@
   <div class="notification_wrapper" v-if="isOpen" @click="close">
     <div class="form">
       <h2>Новый заказ(ы)</h2>
-      <audio ref="audio" loop preload="none" class="audio">
-        <source src="../../assets/loshad.mp3" type="audio/mpeg">
-      </audio>
     </div>
 
   </div>
@@ -21,6 +18,7 @@ export default {
   },
   mounted(){
     if (this.isOpen) {
+
       var playPromise = this.$refs.audio.play();
       if (playPromise !== undefined) {
         playPromise.then(_ => {
@@ -45,7 +43,7 @@ export default {
       this.$store.commit('updateOrdersState', false)
     }
   },
-  
+
 };
 </script>
 

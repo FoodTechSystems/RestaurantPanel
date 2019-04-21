@@ -42,7 +42,7 @@ export default new Vuex.Store({
       .then(res => {
         const newOrdersCount = res.data.filter((a)=> a.order_status === 0).length;
         const currentOrdesCount = this.state.orders.filter((a)=> a.order_status === 0).length;
-        
+
         commit('updateOrders', res.data);
 
         if (newOrdersCount > 0 && newOrdersCount > currentOrdesCount) {
@@ -50,8 +50,8 @@ export default new Vuex.Store({
         }
       })
       .catch(e => {
-        console.log(e);
-        router.push("/");
+        // console.log(e);
+        // router.push("/");
       })
     },
 
@@ -61,8 +61,8 @@ export default new Vuex.Store({
         commit('updateCurrentOrder', res.data)
       })
       .catch(e => {
-        console.log(e);
-        router.push("/");
+        // console.log(e);
+        // router.push("/");
       })
     }
   }

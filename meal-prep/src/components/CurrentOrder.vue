@@ -26,10 +26,10 @@
       <div class="acceptButton ready" @click="giveToDelivery" v-if="currentOrder.order_status === 2">
         Передать курьеру
       </div>
-      
-    
+
+
     </div>
-    
+
     <div class="current_order_table">
 
       <div class="current_order_info">
@@ -38,8 +38,8 @@
           <div class="current_order_info_list_dish">
 
             <div class="current_order_info_list_dish_main">
-              <span>{{dish.quantity}} x {{dish.name}} </span> <span>{{dish.price}} BYN</span>
-            </div> 
+              <span>{{dish.quantity}} x {{dish.name}} ({{dish.size}}) </span> <span>{{dish.price}} BYN</span>
+            </div>
             <div class="current_order_info_list_dish_secondary" :key="option.id" v-for="option in dish.options">
               <span class="line"> <span>{{option.count}} x {{option.name}} </span> <span>{{option.price}} BYN</span> </span>
             </div>
@@ -50,7 +50,7 @@
         <div class="current_order_info_total">
           <div class="current_order_info_total_calc">
             <p>Промежуточная сумма <span>{{currentOrder.order_cost}}  BYN</span></p>
-            <p>Стоимость доставки <span>0.00 BYN</span></p>  
+            <p>Стоимость доставки <span>0.00 BYN</span></p>
           </div>
           <div class="current_order_info_total_price">
             <p>ИТОГО <span>{{currentOrder.order_cost}} BYN</span></p>
@@ -65,7 +65,7 @@
           </ul>
         </div>
       </div>
-      
+
       <div class="current_order_courier">
         <p class="current_order_courier_info">ИНФОРМАЦИЯ О КУРЬЕРЕ:</p>
         <div class="current_order_courier_name">{{currentOrder.courier_name}}</div>
@@ -78,7 +78,7 @@
 
 
     <Popup :currentOrder="currentOrder" :openPopup="openPopup" v-on:close="openPopup = false"/>.
-  
+
   </div>
 </template>
 
@@ -117,7 +117,7 @@ export default {
       })
       .catch(e => {
         console.log(e);
-        this.$router.push("/");
+        // this.$router.push("/");
       })
     },
     giveToDelivery: function(e) {
@@ -126,11 +126,11 @@ export default {
       HTTP.post(`/system/restaurant/order/${this.currentOrder.id}/handed`, body)
       .then(res => {
         this.$store.dispatch("loadData");
-        this.$store.commit('updateCurrentOrder', {});    
+        this.$store.commit('updateCurrentOrder', {});
       })
       .catch(e => {
         console.log(e);
-        this.$router.push("/");
+        // this.$router.push("/");
       })
     }
   }
@@ -148,7 +148,7 @@ export default {
         height: 65px;
         padding: 0 15px;
         border-bottom: 1px solid #DCDDDE;
-        
+
         &_first {
           display: flex;
           align-items: center;
@@ -188,7 +188,7 @@ export default {
         width: 30%;
         padding: 0px 15px 0px 10px;
         text-align: left;
-        
+
         &_info {
           font-size: 14px;
           font-style: italic;
@@ -234,7 +234,7 @@ export default {
             flex-direction: column;
             font-size: 14px;
             color: #808080;
-            margin-top: 8px;   
+            margin-top: 8px;
             margin-left: 28px;
 
             .line {
@@ -314,6 +314,6 @@ export default {
   .ready {
     background: #FC6621;
   }
-  
-  
+
+
 </style>
